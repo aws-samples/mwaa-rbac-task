@@ -1,4 +1,6 @@
+"""
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this
 software and associated documentation files (the "Software"), to deal in the Software
@@ -12,3 +14,16 @@ PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIG
 HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"""
+
+# DAG CONFIGURATIONS
+REGION = "us-west-2"  # Update region
+ACCOUNT_ID = "123456789012"  # Enter AWS Account Number here
+
+PROCESSED_S3_BUCKET = f"s3-{ACCOUNT_ID}-{REGION}-mwaa-processed"
+PUBLISHED_S3_BUCKET = f"s3-{ACCOUNT_ID}-{REGION}-mwaa-published"
+
+PROCESSED_IAM_ROLE = f"arn:aws:iam::{ACCOUNT_ID}:role/write_access_processed_bucket"
+PUBLISHED_IAM_ROLE = f"arn:aws:iam::{ACCOUNT_ID}:role/write_access_published_bucket"
+
+MOCK_TRANSFORMATION_IN_SECONDS = 10
