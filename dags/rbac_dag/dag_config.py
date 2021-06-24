@@ -20,8 +20,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 REGION = "us-west-2"  # Update region
 ACCOUNT_ID = "123456789012"  # Enter AWS Account Number here
 
-PROCESSED_S3_BUCKET = f"s3-{ACCOUNT_ID}-{REGION}-mwaa-processed"
-PUBLISHED_S3_BUCKET = f"s3-{ACCOUNT_ID}-{REGION}-mwaa-published"
+PROCESSED_S3_BUCKET = f"{ACCOUNT_ID}-{REGION}-mwaa-processed"
+PUBLISHED_S3_BUCKET = f"{ACCOUNT_ID}-{REGION}-mwaa-published"
 
 PROCESSED_IAM_ROLE = f"arn:aws:iam::{ACCOUNT_ID}:role/write_access_processed_bucket"
 PUBLISHED_IAM_ROLE = f"arn:aws:iam::{ACCOUNT_ID}:role/write_access_published_bucket"
