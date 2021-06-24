@@ -13,68 +13,24 @@ Prerequisite:
 
 1. [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Environment ( Version 1.10.12 or 2.0.2)
 2. Create following buckets 
-   - Processed bucket name : `s3-<AWS-ACCOUNT_ID>-<REGION>-mwaa-processed` 
-   - Published bucket name : `s3-<AWS-ACCOUNT_ID>-<REGION>-mwaa-published`
+   - Processed bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-processed` 
+   - Published bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-published`
    - Replace `<AWS-ACCOUNT_ID>` with your AWS Account ID and `<REGION>` to the region where the MWAA is available
 3. Create [IAM Roles](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles$new?step=type)
     - Write access for the processed bucket 
         - Role Name : write_access_processed_bucket
-        - Policy Document:
-           ```{
-               "Version": "2012-10-17",
-               "Statement": [
-                   {
-                       "Sid": "VisualEditor0",
-                       "Effect": "Allow",
-                       "Action": [
-                           "s3:PutObject",
-                           "s3:DeleteObject"
-                       ],
-                       "Resource": "arn:aws:s3:::<AWS-ACCOUNT_ID>-<REGION>-mwaa-processed/*"
-                   }
-               ]
-           }```
+        - Policy Document: Refer `./policy-docs/write_access_processed_bucket.json`
+    - Write access for the published bucket
         - Role Name : write_access_published_bucket 
-        - Policy Document:
-            ```
-            {
-               "Version": "2012-10-17",
-               "Statement": [
-                   {
-                       "Sid": "VisualEditor0",
-                       "Effect": "Allow",
-                       "Action": [
-                           "s3:PutObject",
-                           "s3:DeleteObject"
-                       ],
-                       "Resource": "arn:aws:s3:::<AWS-ACCOUNT_ID>-<REGION>-mwaa-published/*"
-                   }
-               ]
-            }
-            ```
+        - Policy Document: Refer `./policy-docs/write_access_published_bucket.json`
+           
 4. Establish trust relationship with [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) execution role (Found in the MWAA environment page)
-   ```
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       {
-         "Effect": "Allow",
-         "Principal": {
-           "AWS": [
-             "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:assumed-role/<MWAA-EXECUTION_ROLE>/AmazonMWAA-airflow"
-           ],
-           "Service": "s3.amazonaws.com"
-         },
-         "Action": "sts:AssumeRole"
-       }
-     ]
-   }
-   ```
+   - Refer `./policy-docs/trust-policy.json`
     
 5. Code Deployment to [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) :
     - DAG Deployment
-        - Code base is present in the `dags/rbac_dag` directory
-        - Update the following variables in `dag_config.py` file
+        - Code base is present in the `./dags/rbac_dag` directory
+        - Update the following variables in `./dags/rbac_dag/dag_config.py` file
           - REGION ( e.g. us-west-2)
           - ACCOUNT_ID 
         - Deploy to MWAA by copying the DAG files to the appropriate MWAA S3 buckets

@@ -1,0 +1,15 @@
+{
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": {
+           "AWS": [
+             "arn:aws:iam::<AWS_ACCOUNT_ID>:assumed-role/<MWAA-EXECUTION_ROLE>/AmazonMWAA-airflow"
+           ],
+           "Service": "s3.amazonaws.com"
+         },
+         "Action": "sts:AssumeRole"
+       }
+     ]
+   }
