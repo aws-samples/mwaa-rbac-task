@@ -11,12 +11,13 @@ The implementation has the following,
 
 Prerequisite:
 
-1. [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Environment ( Version 1.10.12 or 2.0.2)
-2. Create following buckets 
+1. Create a [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Environment ( Version 1.10.12 or 2.0.2)
+2. Create the following Amazon S3 buckets
    - Processed bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-processed` 
    - Published bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-published`
-   - Replace `<AWS-ACCOUNT_ID>` with your AWS Account ID and `<REGION>` to the region where the MWAA is available
-3. Create [IAM Roles](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles$new?step=type)
+   - Replace `<AWS-ACCOUNT_ID>` with your AWS Account ID and `<REGION>` with the region where the above MWAA service was launched
+   - Follow [best practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html) while creating buckets
+3. Create following [AWS Identity and Access Management](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles$new?step=type) Roles
     - Write access for the processed bucket 
         - Role Name : write_access_processed_bucket
         - Policy Document: Refer `./policy-docs/write_access_processed_bucket.json`
@@ -27,16 +28,17 @@ Prerequisite:
 4. Establish trust relationship with [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) execution role (Found in the MWAA environment page)
    - Refer `./policy-docs/trust-policy.json`
     
-5. Code Deployment to [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) :
+5. Code deployment to [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) :
     - DAG Deployment
         - Code base is present in the `./dags/rbac_dag` directory
         - Update the following variables in `./dags/rbac_dag/dag_config.py` file
           - REGION ( e.g. us-west-2)
           - ACCOUNT_ID 
-        - Deploy to MWAA by copying the DAG files to the appropriate MWAA S3 buckets
+        - Deploy to MWAA by copying the DAG files to the appropriate MWAA S3 buckets that was configured in step 1
     - Custom Operator
-        - Code base is present in the `custom_operator` directory
-        - Deploy to MWAA by copying the custom operator files to the appropriate MWAA S3 buckets
+        - Code base is present in the `./plugins/custom_operators.zip`. Copy to the MWAA's S3 bucket configured in step 1, example s3:/<mwaa-s3-bucket>/plugins/custom_operators.zip
+        - Deploy to MWAA by editing the MWAA environment and configure `Plugins file - optional` with the above plugins path 
+        - Update the MWAA environment for the above change to take effect
    
 6. DAG Execution
     - DAG `sample_rbac_dag` should show up in the [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Web UI ( can be accessed from MWAA service page) after few seconds.
