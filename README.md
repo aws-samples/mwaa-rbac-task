@@ -8,8 +8,7 @@ The implementation has the following,
     - Compatible in 1.10.12 and 2.0.2 version 
 
 ## How to use this code base
-
-Prerequisite:
+Follow the instructions to enforce role based access to tasks. note that the below steps will incur cost. 
 
 1. Create a [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Environment ( Version 1.10.12 or 2.0.2)
 2. Create the following Amazon S3 buckets
@@ -44,4 +43,11 @@ Prerequisite:
     - DAG `sample_rbac_dag` should show up in the [MWAA](https://us-west-2.console.aws.amazon.com/mwaa/home) Web UI ( can be accessed from MWAA service page) after few seconds.
     - Click the `Play` button to run the DAG
     - Notice that, since the roles are established at the task level the DAG completes the execution. Now try to restrict access via the roles and we will notice the DAG failing.
+
+
+## Clean up:
+Bring down the services after implementing the above - as they will incur cost if left running,
+    - MWAA environment
+    - Delete S3 Buckets
+    - Remove IAM Roles and Policies
 
