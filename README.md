@@ -15,7 +15,7 @@ Follow the instructions to enforce role based access to tasks. note that the bel
    - Processed bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-processed` 
    - Published bucket name : `<AWS-ACCOUNT_ID>-<REGION>-mwaa-published`
    - Replace `<AWS-ACCOUNT_ID>` with your AWS Account ID and `<REGION>` with the region where the above MWAA service was launched
-   - Follow [best practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html) while creating buckets
+   - Follow [best practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html) while creating buckets. Its is stongly recommended to enable version control, encryption (In this case Amazon S3 master-key i.e SSE-S3) and server access logging.
 3. Create following [AWS Identity and Access Management](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles$new?step=type) Roles
     - Write access for the processed bucket 
         - Role Name : write_access_processed_bucket
