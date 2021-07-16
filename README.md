@@ -35,7 +35,7 @@ Follow the instructions to enforce role based access to tasks. note that the bel
           - ACCOUNT_ID 
         - Deploy to MWAA by copying the DAG files to the appropriate MWAA S3 buckets that was configured in step 1
     - Custom Operator
-        - Code base is present in the `./plugins/custom_operators.zip`. Copy to the MWAA's S3 bucket configured in step 1, example s3:/<mwaa-s3-bucket>/plugins/custom_operators.zip
+        - Code base is present in the `./plugins/`. Create a ZIP and copy to the MWAA's S3 bucket configured in step 1, example s3:/<mwaa-s3-bucket>/plugins/custom_operators.zip
         - Deploy to MWAA by editing the MWAA environment and configure `Plugins file - optional` with the above plugins path 
         - Update the MWAA environment for the above change to take effect
    
