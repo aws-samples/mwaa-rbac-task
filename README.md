@@ -46,8 +46,8 @@ Follow the instructions to enforce role based access to tasks. note that the bel
 
 
 ## Clean up:
-Bring down the services after implementing the above - as they will incur cost if left running,
-    - MWAA environment
-    - Delete S3 Buckets
-    - Remove IAM Roles and Policies
+Bring down the services after implementing the above - as they will incur cost if left running, 
+- MWAA environment
+- Delete S3 Buckets
+- Remove IAM Roles and Policies
 
