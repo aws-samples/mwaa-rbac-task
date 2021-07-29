@@ -57,7 +57,7 @@ dag_default_args = {
 }
 
 dag = DAG(
-    dag_id="sample_rbac_dag",
+    dag_id="rbac_task",
     description="Sample DAG with fine grain access for tasks",
     default_args=dag_default_args,
     start_date=days_ago(0),
