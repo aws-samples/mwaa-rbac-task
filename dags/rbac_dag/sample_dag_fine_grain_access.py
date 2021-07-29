@@ -66,7 +66,7 @@ dag = DAG(
 )
 
 process_task = RBACPythonOperator(
-    task_id=f"process_task",
+    task_id="process_task",
     python_callable=task_process,
     provide_context=True,
     op_kwargs={"bucket": cf.PROCESSED_S3_BUCKET},
@@ -75,7 +75,7 @@ process_task = RBACPythonOperator(
 )
 
 publish_task = RBACPythonOperator(
-    task_id=f"publish_task",
+    task_id="publish_task",
     python_callable=task_process,
     provide_context=True,
     op_kwargs={"bucket": cf.PUBLISHED_S3_BUCKET},
