@@ -1,7 +1,7 @@
-# Bolstering Security with Role-based Access Control in Amazon MWAA
+# Bolster security with role-based access control in Amazon MWAA
 
 ## Overview
-The code provided with repository is a reference [Apache Airflow](https://airflow.apache.org/) Directed Acyclic Graph(DAG) to support task level access control. 
+The code provided with the repository is a reference [Apache Airflow](https://airflow.apache.org/) Directed Acyclic Graph(DAG) to support task level access control. 
 The implementation has the following,
 1. A custom Airflow Operator ( [PythonOperator](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/python.html) ) to provide fine grain access
 2. Sample DAG that can be executed in [Amazon Managed Workflows for Apache Airflow (MWAA)](https://docs.aws.amazon.com/mwaa/index.html) 
